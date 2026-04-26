@@ -7,6 +7,8 @@ function ToDoList({
   filteredTodos,
   setFilterType,
   filterType,
+  handleEdit,
+  editTodo,
 }) {
   return (
     <div className="container mt-3 bg-light-subtle">
@@ -48,6 +50,7 @@ function ToDoList({
                     todo={todo}
                     completedHandle={completedHandle}
                     deleteHandle={deleteHandle}
+                    handleEdit={handleEdit}
                   />
                 ))}
               </div>

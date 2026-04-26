@@ -1,4 +1,9 @@
-export default function ToDoItem({ todo, completedHandle, deleteHandle }) {
+export default function ToDoItem({
+  todo,
+  completedHandle,
+  deleteHandle,
+  handleEdit,
+}) {
   return (
     <div
       className={`d-flex justify-content-between align-items-center p-2 rounded border ${
@@ -26,12 +31,20 @@ export default function ToDoItem({ todo, completedHandle, deleteHandle }) {
         </span>
       </div>
 
-      <button
-        className="btn btn-sm btn-outline-danger"
-        onClick={() => deleteHandle(todo.id)}
-      >
-        Sil
-      </button>
+      <div className="">
+        <button
+          className="btn btn-sm btn-outline-secondary"
+          onClick={() => handleEdit(todo.id)}
+        >
+          ✏️ Edit
+        </button>
+        <button
+          className="btn btn-sm btn-outline-danger m-1"
+          onClick={() => deleteHandle(todo.id)}
+        >
+          Sil
+        </button>
+      </div>
     </div>
   );
 }

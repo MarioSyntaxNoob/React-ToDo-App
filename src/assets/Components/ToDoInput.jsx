@@ -1,4 +1,10 @@
-export default function ToDoInput({ addTodos, inputValue, setInputValue }) {
+export default function ToDoInput({
+  addTodos,
+  inputValue,
+  setInputValue,
+  editingTodo,
+  editTodo,
+}) {
   return (
     <div className="container-fluid py-4 bg-body-tertiary border-bottom border-secondary-subtle">
       <div className="row justify-content-center">
@@ -14,17 +20,27 @@ export default function ToDoInput({ addTodos, inputValue, setInputValue }) {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter") addTodos();
+                    if (e.key !== "Enter") return;
+                    editingTodo === null ? addTodos() : editTodo();
                   }}
                 />
-
-                <button
-                  className="btn btn-primary"
-                  onClick={addTodos}
-                  disabled={!inputValue?.trim()}
-                >
-                  Ekle
-                </button>
+                {editingTodo === null ? (
+                  <button
+                    className="btn btn-primary"
+                    onClick={addTodos}
+                    disabled={!inputValue?.trim()}
+                  >
+                    Ekle
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-success"
+                    onClick={() => editTodo()}
+                    disabled={!inputValue?.trim()}
+                  >
+                    Edit
+                  </button>
+                )}
               </div>
             </div>
           </div>
